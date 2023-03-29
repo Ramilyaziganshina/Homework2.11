@@ -1,12 +1,14 @@
 package com.example.homework211.services;
 
+import org.springframework.http.ResponseEntity;
+
 public interface CalcService {
 
-    Integer plus(Integer a, Integer b);
+    ResponseEntity<String> plus(Double a, Double b);
 
-    Integer minus(Integer a, Integer b);
+    ResponseEntity<String> minus(Double a, Double b);
 
-    Integer multiply(Integer a, Integer b);
+    ResponseEntity<String> multiply(Double a, Double b);
 
-    Integer divide(Integer a, Integer b);
+    ResponseEntity<String> divide(Double a, Double b);
 }
