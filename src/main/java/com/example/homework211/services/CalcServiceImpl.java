@@ -1,39 +1,36 @@
 package com.example.homework211.services;
 
-import com.example.homework211.exceptions.DivisionByZeroException;
-import com.example.homework211.exceptions.NotEnoughParameters;
+import com.example.homework211.exceptions.WrongArgumentException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalcServiceImpl implements CalcService {
 
-    public Integer plus(Integer a, Integer b) {
-        if (a == null || b == null) {
-            throw new NotEnoughParameters();
-        }
-        return a + b;
+    public ResponseEntity<String> plus(Double num1, Double num2) {
+        double result = num1 + num2;
+        String answer = String.format("%s + %s = %s", num1, num2, result);
+        return ResponseEntity.ok(answer);
     }
 
-    public Integer minus(Integer a, Integer b) {
-        if (a == null || b == null) {
-            throw new NotEnoughParameters();
-        }
-        return a - b;
+    public ResponseEntity<String> minus(Double num1, Double num2) {
+        double result = num1 - num2;
+        String answer = String.format("%s - %s = %s", num1, num2, result);
+        return ResponseEntity.ok(answer);
     }
 
-    public Integer multiply(Integer a, Integer b) {
-        if (a == null || b == null) {
-            throw new NotEnoughParameters();
-        }
-        return a * b;
+    public ResponseEntity<String> multiply(Double num1, Double num2) {
+        double result = num1 * num2;
+        String answer = String.format("%s * %s = %s", num1, num2, result);
+        return ResponseEntity.ok(answer);
     }
 
-    public Integer divide(Integer a, Integer b) {
-        if (a == null || b == null) {
-            throw new NotEnoughParameters();
-        } else if (b == 0) {
-            throw new DivisionByZeroException();
+    public ResponseEntity<String> divide(Double num1, Double num2) {
+        if (num2 == 0) {
+            throw new WrongArgumentException("на ноль делить нельзя");
         }
-        return a / b;
+        double result = num1 / num2;
+        String answer = String.format("%s : %s = %s", num1, num2, result);
+        return ResponseEntity.ok(answer);
     }
 }
